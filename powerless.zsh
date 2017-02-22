@@ -28,7 +28,7 @@ get-arrow() {
 }
 
 get-date() {
-  echo -e "%F{$1}%K{$2} $(date "+%X %x") "
+  echo -e "%F{$1}%K{$2} $(LOCALE=C date "+%X %x") "
 }
 
 get-pwd() {
