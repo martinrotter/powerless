@@ -43,12 +43,21 @@ get-last-code() {
   fi
 }
 
+preexec() {
+  # This makes sure that every (but not first) prompt has empty line above itself.
+  is_first_prompt="no"
+}
+
 precmd() {
   last_code=$?
 
   p_code=$(get-last-code black white red cyan yellow)
   p_date=$(get-date black yellow)
   p_pwd=$(get-pwd black cyan)
+  
+  if [[ "$is_first_prompt" == "no" ]]; then
+    print
+  fi
 }
 
 PROMPT='$p_date$p_code$p_pwd'
