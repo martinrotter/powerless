@@ -15,6 +15,13 @@
 # Set options.
 setopt PROMPT_SUBST
 
+# Specify colors.
+color_text="black"
+color_date="226"
+color_code_ok="7"
+color_code_wrong="red"
+color_pwd="75"
+
 # Specify common variables.
 arrow_character='\ue0b0'
 newline=$'\n'
@@ -50,10 +57,9 @@ preexec() {
 
 precmd() {
   last_code=$?
-
-  p_code=$(get-last-code black white red cyan yellow)
-  p_date=$(get-date black yellow)
-  p_pwd=$(get-pwd black cyan)
+  p_date=$(get-date $color_text $color_date)
+  p_code=$(get-last-code $color_text $color_code_ok $color_code_wrong $color_pwd $color_date)
+  p_pwd=$(get-pwd $color_text $color_pwd)
   
   if [[ "$is_first_prompt" == "no" ]]; then
     print
@@ -63,5 +69,9 @@ precmd() {
 PROMPT='$p_date$p_code$p_pwd'
 
 make-me-powerless() {
-  
+  # Disable duplicate history entries.
+  setopt HIST_IGNORE_DUPS
+
+  # No beeping.
+  setopt NO_beep
 }
