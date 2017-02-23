@@ -11,7 +11,7 @@ setopt PROMPT_SUBST
 
 # Specify colors.
 color_text="black"
-color_date="228"
+color_date="172"
 color_code_ok="7"
 color_code_wrong="red"
 color_pwd="75"
