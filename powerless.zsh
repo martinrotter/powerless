@@ -17,7 +17,7 @@ setopt PROMPT_SUBST
 
 # Specify colors.
 color_text="black"
-color_date="226"
+color_date="228"
 color_code_ok="7"
 color_code_wrong="red"
 color_pwd="75"
@@ -27,7 +27,7 @@ arrow_character='\ue0b0'
 newline=$'\n'
 
 get-arrow() {
-  if [[ "$#" == "2" ]]; then
+  if [[ $# -eq 2 ]]; then
     echo "%F{$1}%K{$2}$arrow_character%f%k"  
   else
     echo "%F{$1}$arrow_character %f"
@@ -43,7 +43,7 @@ get-pwd() {
 }
 
 get-last-code() {
-  if [[ "$last_code" == "0" ]]; then
+  if [[ $last_code -eq 0 ]]; then
     echo "$(get-arrow $5 $2)%F{$1}%K{$2} $last_code %f%k$(get-arrow $2 $4)"
   else
     echo "$(get-arrow $5 $3)%F{$1}%K{$3} $last_code %f%k$(get-arrow $3 $4)"
@@ -52,7 +52,7 @@ get-last-code() {
 
 preexec() {
   # This makes sure that every (but not first) prompt has empty line above itself.
-  is_first_prompt="no"
+  is_first_prompt=1
 }
 
 precmd() {
@@ -61,17 +61,9 @@ precmd() {
   p_code=$(get-last-code $color_text $color_code_ok $color_code_wrong $color_pwd $color_date)
   p_pwd=$(get-pwd $color_text $color_pwd)
   
-  if [[ "$is_first_prompt" == "no" ]]; then
+  if [[ -v is_first_prompt ]]; then
     print
   fi
 }
 
 PROMPT='$p_date$p_code$p_pwd'
-
-make-me-powerless() {
-  # Disable duplicate history entries.
-  setopt HIST_IGNORE_DUPS
-
-  # No beeping.
-  setopt NO_beep
-}
