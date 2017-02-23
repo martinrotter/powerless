@@ -6,7 +6,7 @@ Tiny &amp; simple pure ZSH prompt inspired by powerline.
 ## What is this stuff?
 This is fast and tiny set of ZSH scripts providing some nice ZSH setup, including powerline-inspired prompt and some other enhancements. The prompt offers some nice visual experience and information, including Git (coming soon) repositories metadata.
 
-This is pure ZSH script and should work on any platform supported by ZSH. Tested on Linux (Terminix) and on Cygwin (mintty).
+This is pure ZSH script and should work on any platform supported by ZSH. You do not need anything else like oh-my-zsh and similar shit. Just plain old working ZSH and terminal emulator. Tested on Linux (Terminix) and on Cygwin (mintty).
 
 ## Installation.
 1. Make sure that you have some powerline-enabled font installed and activated in your terminal emulator.
