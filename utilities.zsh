@@ -45,5 +45,5 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path ${HOME}/.martin/zsh/cache
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
