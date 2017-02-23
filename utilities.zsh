@@ -39,6 +39,7 @@ autoload -U compinit
 compinit
 
 zstyle ':completion:*' menu select=3
+zstyle ':completion:*' rehash true
 zstyle ':completion:*' completer _complete _list _oldlist _expand _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:match:*' original only
