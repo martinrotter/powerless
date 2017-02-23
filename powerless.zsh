@@ -61,3 +61,7 @@ precmd() {
 }
 
 PROMPT='$p_date$p_code$p_pwd'
+
+make-me-powerless() {
+  
+}
