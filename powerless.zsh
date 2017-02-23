@@ -1,16 +1,10 @@
-######################################
+################################################
 ### This is the ZSH powerless script.
-######################################
-### Simply source this script into
-### your .zshrc.
-### Make sure your .zshrc does not
-### contain any conflicting code.
-######################################
-
-
-###################
-### Prompt section.
-###################
+################################################
+### Simply source this script into your .zshrc.
+### Make sure your .zshrc does not contain any
+### conflicting code.
+################################################
 
 # Set options.
 setopt PROMPT_SUBST
