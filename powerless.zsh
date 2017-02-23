@@ -21,14 +21,14 @@ newline=$'\n'
 
 get-arrow() {
   if [[ "$#" == "2" ]]; then
-    echo -e "%F{$1}%K{$2}$arrow_character%f%k"  
+    echo "%F{$1}%K{$2}$arrow_character%f%k"  
   else
-    echo -e "%F{$1}$arrow_character %f"
+    echo "%F{$1}$arrow_character %f"
   fi
 }
 
 get-date() {
-  echo -e "%F{$1}%K{$2} %* %W %f%k"
+  echo "%F{$1}%K{$2} %T %W %f%k"
 }
 
 get-pwd() {
@@ -37,9 +37,9 @@ get-pwd() {
 
 get-last-code() {
   if [[ "$last_code" == "0" ]]; then
-    echo -e "$(get-arrow $5 $2)%F{$1}%K{$2} $last_code %f%k$(get-arrow $2 $4)"
+    echo "$(get-arrow $5 $2)%F{$1}%K{$2} $last_code %f%k$(get-arrow $2 $4)"
   else
-    echo -e "$(get-arrow $5 $3)%F{$1}%K{$3} $last_code %f%k$(get-arrow $3 $4)"
+    echo "$(get-arrow $5 $3)%F{$1}%K{$3} $last_code %f%k$(get-arrow $3 $4)"
   fi
 }
 
