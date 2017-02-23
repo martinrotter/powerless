@@ -12,5 +12,5 @@ This is pure ZSH script and should work on any platform supported by ZSH. You do
 1. Make sure that you have some powerline-enabled font installed and activated in your terminal emulator.
 2. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
 3. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
-4. (optional) In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
+4. **!optional!** In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
 5. Make sure that your `.zshrc` does not contain any code which might conflict with powerless scripts.
