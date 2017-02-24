@@ -46,7 +46,7 @@ get-last-code() {
 
 preexec() {
   # This makes sure that every (but not first) prompt has empty line above itself.
-  is_first_prompt=1
+  is_first_prompt=999
 }
 
 precmd() {
@@ -55,7 +55,7 @@ precmd() {
   p_code=$(get-last-code $color_text $color_code_ok $color_code_wrong $color_pwd $color_date)
   p_pwd=$(get-pwd $color_text $color_pwd)
   
-  if [[ -v is_first_prompt ]]; then
+  if [[ $is_first_prompt -eq 999 ]]; then
     print
   fi
 }
