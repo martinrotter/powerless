@@ -44,12 +44,14 @@ get-last-code() {
   fi
 }
 
-preexec() {
+preexec_powerless() {
   # This makes sure that every (but not first) prompt has empty line above itself.
   is_first_prompt=999
 }
 
-precmd() {
+preexec_functions+=(preexec_powerless)
+
+precmd_powerless() {
   last_code=$?
   p_date=$(get-date $color_text $color_date)
   p_code=$(get-last-code $color_text $color_code_ok $color_code_wrong $color_pwd $color_date)
@@ -59,5 +61,7 @@ precmd() {
     print
   fi
 }
+
+precmd_functions+=(precmd_powerless)
 
 PROMPT='$p_date$p_code$p_pwd'
