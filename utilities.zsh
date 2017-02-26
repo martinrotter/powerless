@@ -1,10 +1,6 @@
 #####################################################
 ### This is the OPTIONAL ZSH powerless utlity script.
 #####################################################
-### Simply source this script into your .zshrc.
-### Make sure your .zshrc does not contain any
-### conflicting code.
-#####################################################
 
 # Shortcuts.
 bindkey ';5D' backward-word       # CTRL+LEFT - jump to previous word boundary

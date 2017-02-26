@@ -1,9 +1,5 @@
 ################################################
-### This is the ZSH powerless script.
-################################################
-### Simply source this script into your .zshrc.
-### Make sure your .zshrc does not contain any
-### conflicting code.
+### This is the ZSH powerless main script.
 ################################################
 
 # Set options and settings.
