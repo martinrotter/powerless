@@ -85,7 +85,9 @@ precmd_functions+=(precmd-powerless)
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:git*' formats "%b"
+zstyle ':vcs_info:*' check-for-staged-changes false
+zstyle ':vcs_info:git*' stagedstr "sss"
+zstyle ':vcs_info:git*' formats "%b%c"
 zstyle ':vcs_info:git*' actionformats "%b (%a)"
 
 # Set the prompts.
