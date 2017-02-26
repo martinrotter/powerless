@@ -56,7 +56,6 @@ get-prompt() {
 
 powerless-prompt() {
   get-date $color_text $color_date
-
   get-pwd $color_text $color_pwd
   get-git-info $color_text $color_git
   get-prompt
