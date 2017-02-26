@@ -14,3 +14,4 @@ This is pure ZSH script and should work on any platform supported by ZSH. You do
 3. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
 4. **!optional!** In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
 5. Make sure that your `.zshrc` does not contain any code which might conflict with powerless scripts.
+6. Make sure that selected powerline-enabled font supports all the characters, check screenshots for comparison. I have good experience with DejaVu Sans Mono for Powerline.
