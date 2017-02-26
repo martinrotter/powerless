@@ -2,10 +2,10 @@
 Tiny &amp; simple pure ZSH prompt inspired by powerline.
 
 ### Terminix (Linux)
-![alt text](https://raw.githubusercontent.com/martinrotter/powerless/master/powerless.png)
+![alt text](https://raw.githubusercontent.com/martinrotter/powerless/master/screenshots/powerless.png)
 
 ### Mintty (Cygwin)
-![alt text](https://raw.githubusercontent.com/martinrotter/powerless/master/powerless-mintty.png)
+![alt text](https://raw.githubusercontent.com/martinrotter/powerless/master/screenshots/powerless-mintty.png)
 
 ## What is this stuff?
 This is fast and tiny set of ZSH scripts providing some nice ZSH setup, including powerline-inspired prompt and some other enhancements. The prompt offers some nice visual experience and information, including Git (coming soon) repositories metadata.
