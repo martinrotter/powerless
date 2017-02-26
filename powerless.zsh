@@ -84,6 +84,7 @@ precmd_functions+=(precmd-powerless)
 # Setup vcs_info (Git).
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' use-simple true
 zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:git*' formats "%b"
 zstyle ':vcs_info:git*' actionformats "%b (%a)"
