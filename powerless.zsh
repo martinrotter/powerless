@@ -47,7 +47,7 @@ get-git-info() {
 }
 
 get-last-code() {
-  [[ $last_code -eq 0 ]] && echo -n "$(get-back-arrow $2)%{%F{$1}%K{$2}%} $last_code " || echo -n "$(get-back-arrow $3)%{%F{$1}%K{$3}%} $last_code "
+  [[ $last_code -eq 0 ]] && echo -n "$(get-back-arrow $2)%{%F{$1}%K{$2}%}✔ $last_code " || echo -n "$(get-back-arrow $3)%{%F{$1}%K{$3}%}✘ $last_code "
 }
 
 get-prompt() {
