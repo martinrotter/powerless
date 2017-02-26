@@ -17,6 +17,7 @@ color_date="172"
 color_code_ok="7"
 color_code_wrong="red"
 color_pwd="75"
+color_git="114"
 
 # Specify common variables.
 prompt_char=$'\u2023'
@@ -40,12 +41,12 @@ get-date() {
 }
 
 get-pwd() {
-  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} %/ %F%k$(get-arrow $2)"
+  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} %~ "
   store-colors
 }
 
-get-user-machine() {
-  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} %n "
+get-git-info() {
+  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 ${vcs_info_msg_0_} %k$(get-arrow $2)"
   store-colors
 }
 
@@ -59,8 +60,9 @@ get-prompt() {
 
 powerless-prompt() {
   get-date $color_text $color_date
-  get-user-machine $color_text $color_code_ok
+
   get-pwd $color_text $color_pwd
+  get-git-info $color_text $color_git
   get-prompt
 }
 
@@ -77,11 +79,19 @@ preexec-powerless() {
 precmd-powerless() {
   last_code=$?  
   [[ $is_first_prompt -eq 999 ]] && print
+  vcs_info
 }
 
 # Attach the hook functions.
 preexec_functions+=(preexec-powerless)
 precmd_functions+=(precmd-powerless)
+
+# Setup vcs_info (Git).
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes false
+zstyle ':vcs_info:git*' formats "%b"
+zstyle ':vcs_info:git*' actionformats "%b (%a)"
 
 # Set the prompts.
 PROMPT='$(powerless-prompt)'
