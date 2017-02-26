@@ -81,11 +81,12 @@ precmd-powerless() {
 preexec_functions+=(preexec-powerless)
 precmd_functions+=(precmd-powerless)
 
+
 # Setup vcs_info (Git).
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:*' check-for-staged-changes false
+zstyle ':vcs_info:*' check-for-staged-changes true
 zstyle ':vcs_info:git*' stagedstr "sss"
 zstyle ':vcs_info:git*' formats "%b%c"
 zstyle ':vcs_info:git*' actionformats "%b (%a)"
