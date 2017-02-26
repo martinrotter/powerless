@@ -5,7 +5,7 @@
 # Set options and settings.
 setopt PROMPT_SUBST
 setopt PROMPT_SP
-ZLE_RPROMPT_INDENT=0
+export ZLE_RPROMPT_INDENT=0
 
 # Specify colors.
 color_text="black"
@@ -21,7 +21,10 @@ arrow_character=$'\ue0b0'
 arrow_back_character=$'\uE0B2'
 newline=$'\n'
 
-alias store-colors='fg_color=$1 bg_color=$2'
+store-colors() {
+  fg_color=$1
+  bg_color=$2
+}
 
 get-arrow() {
   [[ $# -eq 2 ]] && echo -n "%F{$1}%K{$2}$arrow_character%f%k" || echo -n "%F{$1}$arrow_character%f"
@@ -33,21 +36,27 @@ get-back-arrow() {
 
 get-date() {
   echo -n "%{%F{$1}%K{$2}%} %T %W %{%f%k%}"
-  store-colors
+  store-colors $1 $2
 }
 
 get-pwd() {
   echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} %~ "
-  store-colors
+  store-colors $1 $2
 }
 
 get-git-info() {
   echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $vcs_info_msg_0_ %k$(get-arrow $2)"
-  store-colors
+  store-colors $1 $2
 }
 
 get-last-code() {
-  [[ $last_code -eq 0 ]] && echo -n "$(get-back-arrow $2)%{%F{$1}%K{$2}%}✔ $last_code " || echo -n "$(get-back-arrow $3)%{%F{$1}%K{$3}%}✘ $last_code "
+  if [[ $last_code -eq 0 ]]; then
+    echo -n "$(get-arrow $bg_color $2)%{%F{$1}%K{$2}%} ✔ $last_code "
+    store-colors $1 $2
+  else
+    echo -n "$(get-arrow $bg_color $3)%{%F{$1}%K{$3}%} ✘ $last_code "
+    store-colors $1 $3
+  fi
 }
 
 get-prompt() {
@@ -56,13 +65,10 @@ get-prompt() {
 
 powerless-prompt() {
   get-date $color_text $color_date
+  get-last-code $color_text $color_code_ok $color_code_wrong
   get-pwd $color_text $color_pwd
   get-git-info $color_text $color_git
   get-prompt
-}
-
-powerless-rprompt() {
-  get-last-code $color_text $color_code_ok $color_code_wrong
 }
 
 # Hook functions.
@@ -91,4 +97,3 @@ zstyle ':vcs_info:git*' actionformats "%b (%a)"
 
 # Set the prompts.
 PROMPT='$(powerless-prompt)'
-RPROMPT='$(powerless-rprompt)'
