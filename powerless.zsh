@@ -29,12 +29,12 @@ get-arrow() {
 }
 
 get-date() {
-  echo -n "%{%F{$1}%K{$2}%} %T %W %{%f%k%}"
+  echo -n "%{%F{$1}%K{$2}%} 📅 %T %W %{%f%k%}"
   store-colors $1 $2
 }
 
 get-pwd() {
-  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} %~ "
+  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} 📂 %~ "
   store-colors $1 $2
 }
 
