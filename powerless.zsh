@@ -45,7 +45,7 @@ get-pwd() {
 }
 
 get-git-info() {
-  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $vcs_info_msg_0_ %k$(get-arrow $2)"
+  [[ -n "$vcs_info_msg_0_" ]] && echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $vcs_info_msg_0_ %k$(get-arrow $2)" || echo -n "%k$(get-arrow $bg_color)"
   store-colors $1 $2
 }
 
