@@ -66,20 +66,13 @@ powerless-prompt() {
   get-prompt
 }
 
-# Hook functions.
-preexec-powerless() {
-  # This makes sure that every (but not first) prompt has empty line above itself.
-  is_first_prompt=999
-}
-
 precmd-powerless() {
   last_code=$?  
-  [[ $is_first_prompt -eq 999 ]] && print
+  [[ $is_first_prompt -eq 999 ]] && print || is_first_prompt=999
   vcs_info
 }
 
 # Attach the hook functions.
-preexec_functions+=(preexec-powerless)
 precmd_functions+=(precmd-powerless)
 
 # Setup vcs_info (Git).
