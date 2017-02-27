@@ -5,7 +5,7 @@
 # Set options and settings.
 setopt PROMPT_SUBST
 setopt PROMPT_SP
-export ZLE_RPROMPT_INDENT=0
+ZLE_RPROMPT_INDENT=0
 
 # Specify colors.
 color_text="black"
@@ -18,20 +18,14 @@ color_git="114"
 # Specify common variables.
 prompt_char=$'\u2023'
 arrow_character=$'\ue0b0'
-arrow_back_character=$'\uE0B2'
 newline=$'\n'
 
 store-colors() {
-  fg_color=$1
-  bg_color=$2
+  fg_color=$1 && bg_color=$2
 }
 
 get-arrow() {
   [[ $# -eq 2 ]] && echo -n "%F{$1}%K{$2}$arrow_character%f%k" || echo -n "%F{$1}$arrow_character%f"
-}
-
-get-back-arrow() {
-  [[ $# -eq 2 ]] && echo -n "%{%F{$1}%K{$2}%}$arrow_back_character%{%f%k%}" || echo -n "%{%F{$1}%}$arrow_back_character%{%f%}"
 }
 
 get-date() {
