@@ -33,13 +33,14 @@ get-date() {
   store-colors $1 $2
 }
 
+
 get-pwd() {
   echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} 📂 %~ "
   store-colors $1 $2
 }
 
 get-git-info() {
-  [[ -n "$vcs_info_msg_0_" ]] && echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $vcs_info_msg_0_ %k$(get-arrow $2)" || echo -n "%k$(get-arrow $bg_color)"
+  [[ -n "$vcs_info_msg_0_" ]] && echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $vcs_info_msg_0_$(git diff --numstat | awk '{print " +" $1 " -" $2}') %k$(get-arrow $2)" || echo -n "%k$(get-arrow $bg_color)"
   store-colors $1 $2
 }
 
