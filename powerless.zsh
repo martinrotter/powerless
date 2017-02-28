@@ -8,12 +8,12 @@ setopt PROMPT_SP
 ZLE_RPROMPT_INDENT=0
 
 # Specify colors.
-color_text="black"
-color_user_host="172"
-color_code_ok="7"
-color_code_wrong="red"
-color_pwd="75"
-color_git="114"
+powerless_color_text="black"
+powerless_color_user_host="172"
+powerless_color_code_ok="7"
+powerless_color_code_wrong="red"
+powerless_color_pwd="75"
+powerless_color_git="114"
 
 # Specify common variables.
 prompt_char=$'\u2023'
@@ -58,10 +58,10 @@ get-prompt() {
 }
 
 powerless-prompt() {
-  get-user-host $color_text $color_user_host
-  get-last-code $color_text $color_code_ok $color_code_wrong
-  get-pwd $color_text $color_pwd
-  get-git-info $color_text $color_git
+  get-user-host $powerless_color_text $powerless_color_user_host
+  get-last-code $powerless_color_text $powerless_color_code_ok $powerless_color_code_wrong
+  get-pwd $powerless_color_text $powerless_color_pwd
+  get-git-info $powerless_color_text $powerless_color_git
   get-prompt
 }
 
