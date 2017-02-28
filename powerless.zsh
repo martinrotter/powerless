@@ -45,10 +45,10 @@ get-git-info() {
 
 get-last-code() {
   if [[ $last_code -eq 0 ]]; then
-    echo -n "$(get-arrow $bg_color $2)%{%F{$1}%K{$2}%} ✔ $last_code "
+    echo -n " ✔ $last_code "
     store-colors $1 $2
   else
-    echo -n "$(get-arrow $bg_color $3)%{%F{$1}%K{$3}%} ✘ $last_code "
+    echo -n "%{%F{$3}%} ✘ $last_code %{%f%}"
     store-colors $1 $3
   fi
 }
@@ -59,7 +59,6 @@ get-prompt() {
 
 powerless-prompt() {
   get-user-host $powerless_color_text $powerless_color_user_host
-  get-last-code $powerless_color_text $powerless_color_code_ok $powerless_color_code_wrong
   get-pwd $powerless_color_text $powerless_color_pwd
   get-git-info $powerless_color_text $powerless_color_git
   get-prompt
@@ -67,7 +66,13 @@ powerless-prompt() {
 
 precmd-powerless() {
   last_code=$?  
-  [[ $is_first_prompt -eq 999 ]] && print || is_first_prompt=999
+  if [[ $is_first_prompt -eq 999 ]]; then
+    printf '%*s\c' $(($(tput cols) - 4 - ${#last_code})) ""
+    print -P "$(get-last-code $powerless_color_text $powerless_color_code_ok $powerless_color_code_wrong)\n"
+  else
+    is_first_prompt=999
+  fi
+  
   vcs_info
 }
 
