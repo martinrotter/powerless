@@ -16,7 +16,7 @@ powerless_color_pwd="75"
 powerless_color_git="114"
 
 # Specify common variables.
-prompt_char=$'\u2023'
+prompt_char='➥'
 arrow_character=$'\ue0b0'
 newline=$'\n'
 
