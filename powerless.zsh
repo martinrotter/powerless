@@ -44,13 +44,7 @@ get-git-info() {
 }
 
 get-last-code() {
-  if [[ $last_code -eq 0 ]]; then
-    echo -n " ✔ $last_code "
-    store-colors $1 $2
-  else
-    echo -n "%{%F{$3}%} ✘ $last_code %{%f%}"
-    store-colors $1 $3
-  fi
+  [[ $last_code -eq 0 ]] && echo -n " ✔ $last_code " || echo -n "%{%F{$3}%} ✘ $last_code %{%f%}"
 }
 
 get-prompt() {
