@@ -9,7 +9,7 @@ ZLE_RPROMPT_INDENT=0
 
 # Specify colors.
 color_text="black"
-color_date="172"
+color_user_host="172"
 color_code_ok="7"
 color_code_wrong="red"
 color_pwd="75"
@@ -28,11 +28,10 @@ get-arrow() {
   [[ $# -eq 2 ]] && echo -n "%F{$1}%K{$2}$arrow_character%f%k" || echo -n "%F{$1}$arrow_character%f"
 }
 
-get-date() {
-  echo -n "%{%F{$1}%K{$2}%} 📅 %T %W %{%f%k%}"
+get-user-host() {
+  echo -n "%{%F{$1}%K{$2}%} 🗣 %n@%M %{%f%k%}"
   store-colors $1 $2
 }
-
 
 get-pwd() {
   echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} 📂 %~ "
@@ -59,7 +58,7 @@ get-prompt() {
 }
 
 powerless-prompt() {
-  get-date $color_text $color_date
+  get-user-host $color_text $color_user_host
   get-last-code $color_text $color_code_ok $color_code_wrong
   get-pwd $color_text $color_pwd
   get-git-info $color_text $color_git
