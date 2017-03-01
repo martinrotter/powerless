@@ -29,7 +29,7 @@ get-arrow() {
 }
 
 get-user-host() {
-  echo -n "%{%F{$1}%K{$2}%} 🗣 %n@%M %{%f%k%}"
+  echo -n "%{%F{$1}%K{$2}%} ☻ %n@%M %{%f%k%}"
   store-colors $1 $2
 }
 
