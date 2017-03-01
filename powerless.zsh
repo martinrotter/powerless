@@ -39,7 +39,14 @@ get-pwd() {
 }
 
 get-git-info() {
-  [[ -n "$vcs_info_msg_0_" ]] && echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $vcs_info_msg_0_$(git diff --numstat | tail -n 1 | awk '{print " +" $1 " -" $2}') %k$(get-arrow $2)" || echo -n "%k$(get-arrow $bg_color)"
+  git_branch=$(git rev-parse --abbrev-ref HEAD 2>&1)
+  git_is=$?
+   
+  if [[ "$git_is" == "0" ]]; then
+    echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch$(git diff --numstat | tail -n 1 | awk '{print " +" $1 " -" $2}') %k$(get-arrow $2)"
+  else
+    echo -n "%k$(get-arrow $bg_color)"
+  fi
   store-colors $1 $2
 }
 
@@ -66,20 +73,10 @@ precmd-powerless() {
   else
     is_first_prompt=999
   fi
-  
-  vcs_info
 }
 
 # Attach the hook functions.
 precmd_functions+=(precmd-powerless)
-
-# Setup vcs_info (Git).
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' use-simple true
-zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:git*' formats "%b"
-zstyle ':vcs_info:git*' actionformats "%b (%a)"
 
 # Set the prompts.
 PROMPT='$(powerless-prompt)'
