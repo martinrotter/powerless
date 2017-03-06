@@ -42,7 +42,7 @@ get-git-info() {
   git_branch=$(git rev-parse --abbrev-ref HEAD 2>&1)
   git_is=$?
    
-  [[ "$git_is" == "0" ]] &&echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch$(git diff --numstat | tail -n 1 | awk '{print " +" $1 " -" $2}') %k$(get-arrow $2)" || echo -n "%k$(get-arrow $bg_color)"
+  [[ "$git_is" == "0" ]] && echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch$(git diff --shortstat | awk '{print " +" $4 " -" $6}') %k$(get-arrow $2)%f%k" || echo -n "%k$(get-arrow $bg_color)%f%k"
 
   store-colors $1 $2
 }
