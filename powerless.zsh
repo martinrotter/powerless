@@ -51,8 +51,9 @@ get-git-info() {
     [[ $git_status =~ ($'\n'|^).D ]] && git_symbols="${git_symbols}D"
     [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]] && git_symbols="${git_symbols}C"
     [[ $git_status =~ ($'\n'|^)\\?\\? ]] && git_symbols="${git_symbols}U"
+    [[ ! -z "$git_symbols" ]] && git_symbols="$(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') "
   
-    echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') %k$(get-arrow $2)%f%k"
+    echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $git_symbols%k$(get-arrow $2)%f%k"
   else
     echo -n "$(get-arrow $bg_color)%f%k"
   fi
