@@ -25,7 +25,7 @@ store-colors() {
 }
 
 get-arrow() {
-  [[ $# -eq 2 ]] && echo -n "%F{$1}%K{$2}$arrow_character%f%k" || echo -n "%F{$1}$arrow_character%f"
+  [[ $# -eq 2 ]] && echo -n "%F{$1}%K{$2}$arrow_character%f%k" || echo -n "%F{$1}$arrow_character%f%k"
 }
 
 get-user-host() {
@@ -34,7 +34,7 @@ get-user-host() {
 }
 
 get-pwd() {
-  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} 📂 %~ "
+  echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} 📂 %~ %f%k"
   store-colors $1 $2
 }
 
@@ -43,7 +43,7 @@ get-git-info() {
   local git_is=$?
    
   if [[ "$git_is" == "0" ]]; then
-    local git_status="$(git status --porcelain 2> /dev/null)"
+    local git_status="$(git status --ignore-submodules=dirty --porcelain 2> /dev/null)"
     local git_symbols=""
     
     [[ $git_status =~ ($'\n'|^).M ]] && git_symbols="${git_symbols}M"
@@ -54,18 +54,18 @@ get-git-info() {
   
     echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') %k$(get-arrow $2)%f%k"
   else
-    echo -n "%k$(get-arrow $bg_color)%f%k"
+    echo -n "$(get-arrow $bg_color)%f%k"
   fi
 
   store-colors $1 $2
 }
 
 get-last-code() {
-  [[ $last_code -eq 0 ]] && echo -n " ✔ $last_code " || echo -n "%{%F{$3}%} ✘ $last_code %{%f%}"
+  [[ $last_code -eq 0 ]] && echo -n " ✔ $last_code " || echo -n "%{%F{$3}%} ✘ $last_code %{%f%k%}"
 }
 
 get-prompt() {
-  echo -n "$newline" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char%{%f%} " || echo -n " $prompt_char " )
+  echo -n "$newline" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char%{%f%k%} " || echo -n " $prompt_char " )
 }
 
 powerless-prompt() {
