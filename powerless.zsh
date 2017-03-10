@@ -39,10 +39,22 @@ get-pwd() {
 }
 
 get-git-info() {
-  git_branch=$(git rev-parse --abbrev-ref HEAD 2>&1)
-  git_is=$?
+  local git_branch=$(git rev-parse --abbrev-ref HEAD 2>&1)
+  local git_is=$?
+  local git_status="$(git status --porcelain 2> /dev/null)"
+  local git_symbols=""
+  
+  [[ $git_status =~ ($'\n'|^).M ]] && git_symbols="${git_symbols}M"
+  [[ $git_status =~ ($'\n'|^)A ]] && git_symbols="${git_symbols}A"
+  [[ $git_status =~ ($'\n'|^).D ]] && git_symbols="${git_symbols}D"
+  [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]] && git_symbols="${git_symbols}C"
+  [[ $git_status =~ ($'\n'|^)\\?\\? ]] && git_symbols="${git_symbols}U"
    
-  [[ "$git_is" == "0" ]] && echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch$(git diff --shortstat | awk '{print " +" $4 " -" $6}') %k$(get-arrow $2)%f%k" || echo -n "%k$(get-arrow $bg_color)%f%k"
+  if [[ "$git_is" == "0" ]]; then
+   echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') %k$(get-arrow $2)%f%k"
+  else
+    echo -n "%k$(get-arrow $bg_color)%f%k"
+  fi
 
   store-colors $1 $2
 }
@@ -63,7 +75,8 @@ powerless-prompt() {
 }
 
 precmd-powerless() {
-  last_code=$?  
+  last_code=$?
+  
   if [[ $is_first_prompt -eq 999 ]]; then
     printf '%*s\c' $(($(tput cols) - 4 - ${#last_code})) ""
     print -P "$(get-last-code $powerless_color_text $powerless_color_code_ok $powerless_color_code_wrong)\n"
