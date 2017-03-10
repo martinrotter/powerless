@@ -39,19 +39,20 @@ get-pwd() {
 }
 
 get-git-info() {
-  local git_branch=$(git rev-parse --abbrev-ref HEAD 2>&1)
+  git rev-parse --abbrev-ref HEAD 2> /dev/null | read git_branch
   local git_is=$?
-  local git_status="$(git status --porcelain 2> /dev/null)"
-  local git_symbols=""
-  
-  [[ $git_status =~ ($'\n'|^).M ]] && git_symbols="${git_symbols}M"
-  [[ $git_status =~ ($'\n'|^)A ]] && git_symbols="${git_symbols}A"
-  [[ $git_status =~ ($'\n'|^).D ]] && git_symbols="${git_symbols}D"
-  [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]] && git_symbols="${git_symbols}C"
-  [[ $git_status =~ ($'\n'|^)\\?\\? ]] && git_symbols="${git_symbols}U"
    
   if [[ "$git_is" == "0" ]]; then
-   echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') %k$(get-arrow $2)%f%k"
+    local git_status="$(git status --porcelain 2> /dev/null)"
+    local git_symbols=""
+    
+    [[ $git_status =~ ($'\n'|^).M ]] && git_symbols="${git_symbols}M"
+    [[ $git_status =~ ($'\n'|^)A ]] && git_symbols="${git_symbols}A"
+    [[ $git_status =~ ($'\n'|^).D ]] && git_symbols="${git_symbols}D"
+    [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]] && git_symbols="${git_symbols}C"
+    [[ $git_status =~ ($'\n'|^)\\?\\? ]] && git_symbols="${git_symbols}U"
+  
+    echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') %k$(get-arrow $2)%f%k"
   else
     echo -n "%k$(get-arrow $bg_color)%f%k"
   fi
