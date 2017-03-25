@@ -59,7 +59,7 @@ get-last-code() {
 }
 
 get-prompt() {
-  echo -n "$newline" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char%{%f%k%}\e[0m " || echo -n " $prompt_char\e[0m " )
+  echo -n "$newline" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char%{%f%k%}\e[0m " || echo -n " $prompt_char%{\e[0m%} " )
 }
 
 powerless-prompt() {
