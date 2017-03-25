@@ -40,18 +40,11 @@ get-pwd() {
 
 get-git-info() {
   git rev-parse --abbrev-ref HEAD 2> /dev/null | read git_branch
-  local git_is=$?
    
-  if [[ "$git_is" == "0" ]]; then
-    local git_status="$(git status --ignore-submodules=dirty --porcelain 2> /dev/null)"
-    local git_symbols=""
+  if [[ "$?" == "0" ]]; then  
+    git diff --quiet --ignore-submodules HEAD > /dev/null 2>&1
     
-    [[ $git_status =~ ($'\n'|^).M ]] && git_symbols="${git_symbols}M"
-    [[ $git_status =~ ($'\n'|^)A ]] && git_symbols="${git_symbols}A"
-    [[ $git_status =~ ($'\n'|^).D ]] && git_symbols="${git_symbols}D"
-    [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]] && git_symbols="${git_symbols}C"
-    [[ $git_status =~ ($'\n'|^)\\?\\? ]] && git_symbols="${git_symbols}U"
-    [[ ! -z "$git_symbols" ]] && git_symbols="$(echo $git_symbols | perl -ne 's/(\w(?!$))/$1•/g; print') "
+    [[ "$?" != "0" ]] && git_symbols="❗ "
   
     echo -n "$(get-arrow $bg_color $2)%F{$1}%K{$2} \ue0a0 $git_branch $git_symbols%k$(get-arrow $2)%f%k"
   else
@@ -66,7 +59,7 @@ get-last-code() {
 }
 
 get-prompt() {
-  echo -n "$newline" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char%{%f%k%} " || echo -n " $prompt_char " )
+  echo -n "$newline" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char%{%f%k%}\e[0m " || echo -n " $prompt_char\e[0m " )
 }
 
 powerless-prompt() {
