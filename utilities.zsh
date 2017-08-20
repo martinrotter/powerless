@@ -35,6 +35,19 @@ setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_MINUS
 # Do not remove slash when executed completed expression.
 unsetopt AUTO_REMOVE_SLASH
 
+# Setup persistent directory stack.
+DIRSTACKFILE="$HOME/.zsh_dirstack"
+DIRSTACKSIZE=30
+
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+
+chpwd() {
+  print -l $PWD ${(u)dirstack} > $DIRSTACKFILE
+}
+
 # Setup completions & menu selections.
 autoload -U compinit
 compinit
