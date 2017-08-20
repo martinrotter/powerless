@@ -18,8 +18,8 @@ powerless_color_git="202"
 prompt_char='$'
 rc='%{%f%k%}'
 
-get-user-host() {
-  echo -n "%{%F{$1}%K{$2}%} %n@%M $rc"
+get-user-host() {  
+  echo -n "%{%F{$1}%K{$2}%} %n$([[ -v "$SSH_CLIENT" ]] && echo -n '@%M') $rc"
 }
 
 get-pwd() {
