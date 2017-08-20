@@ -16,24 +16,20 @@ This is pure ZSH script and should work on any platform supported by ZSH. You do
 * terminal emulator,
 * Perl.
 
+**You do not need anything else, like powerline-enabled font. This prompt does NOT use special "powerline" characters, nor special UTF-8 characters. It ASCII characters where possible.**
+
 ## What it shows?
 This is simple prompt which shows:
 
-* current hostname & username,
+* current username (and hostname **if connected via SSH**),
 * working directory,
-* result code of previous command,
-* current Git branch (if any),
-* current state of Git repository (if any), including:
-    * "M" character if there are modified files,
-    * "A" character if there are newly added files,
-    * "D" character if there are newly deleted files,
-    * "C" character if your work is ready for commit (this means that that there options "M", "A" and "D" are not present anymore).
+* result code of previous command (**if differs from 0**),
+* current Git branch (**if any**) and indication of dirty state,
 * some specific situations are shown with special color (like error in previous command).
 
 ## Installation.
-1. Make sure that you have some powerline-enabled font installed and activated in your terminal emulator.
-2. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
-3. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
-4. **!optional!** In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
-5. Make sure that your `.zshrc` does not contain any code which might conflict with powerless scripts.
-6. Make sure that selected powerline-enabled font supports all the characters, check screenshots for comparison. I have good experience with DejaVu Sans Mono for Powerline.
+1. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
+2. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
+3. **!optional!** In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
+4. Make sure that your `.zshrc` does not contain any code which might conflict with powerless scripts.
+5. Make sure that selected powerline-enabled font supports all the characters, check screenshots for comparison. I have good experience with DejaVu Sans Mono for Powerline.
