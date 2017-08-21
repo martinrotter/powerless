@@ -36,7 +36,7 @@ setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_MINUS
 unsetopt AUTO_REMOVE_SLASH
 
 # Setup persistent directory stack.
-DIRSTACKFILE="$HOME/.zsh_dirstack"
+DIRSTACKFILE="$HOME/.zdirstack"
 DIRSTACKSIZE=30
 
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then

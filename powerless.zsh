@@ -50,7 +50,7 @@ powerless-prompt() {
   get-user-host $powerless_color_text $powerless_color_user_host
   get-last-code $powerless_color_text $powerless_color_code_wrong
   get-pwd $powerless_color_text $powerless_color_pwd
-  get-git-info $powerless_color_text $powerless_color_git
+  #get-git-info $powerless_color_text $powerless_color_git
   get-prompt
 }
 
