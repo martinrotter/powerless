@@ -10,6 +10,8 @@ bindkey '^[3;5~' delete-char      # DELETE - delete character after cursor
 bindkey '^[[H' beginning-of-line  # HOME - go to beginning of line
 bindkey '^[[F' end-of-line        # END - go to end of line
 bindkey '^[[3;5~' kill-word       # CTRL+DELETE - delete whole next word
+bindkey '^[[A' history-beginning-search-backward    # History search.
+bindkey '^[[B' history-beginning-search-forward     # History search.
 
 if [[ "$(uname -o)" != "Cygwin" ]]; then
   bindkey '^H' backward-kill-word   # CTRL+BACKSPACE - delete whole previous word
