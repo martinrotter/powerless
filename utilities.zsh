@@ -2,7 +2,8 @@
 ### This is the OPTIONAL ZSH powerless utlity script.
 #####################################################
 
-# Shortcuts.
+### Shortcuts.
+#####################################################
 bindkey ';5D' backward-word       # CTRL+LEFT - jump to previous word boundary
 bindkey ';5C' forward-word        # CTRL+RIGHT - jump to next word boundary
 bindkey '^[[3~' delete-char       # BACKSPACE - delete character before cursor
@@ -18,6 +19,9 @@ if [[ "$(uname -o)" != "Cygwin" ]]; then
 else
   bindkey '^_' backward-kill-word   # CTRL+BACKSPACE - delete whole previous word
 fi
+
+### Options.
+#####################################################
 
 # Disable duplicate history entries.
 setopt HIST_IGNORE_DUPS
@@ -37,6 +41,9 @@ setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_MINUS
 # Do not remove slash when executed completed expression.
 unsetopt AUTO_REMOVE_SLASH
 
+### Dirstack and history.
+#####################################################
+
 # Setup persistent directory stack.
 DIRSTACKFILE="$HOME/.zdirstack"
 DIRSTACKSIZE=30
@@ -50,16 +57,23 @@ chpwd() {
   print -l $PWD ${(u)dirstack} > $DIRSTACKFILE
 }
 
+### Completions.
+#####################################################
+
 # Setup completions & menu selections.
 autoload -U compinit
 compinit
 
-zstyle ':completion:*' menu select=3
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' completer _complete _list _oldlist _expand _ignored _match _correct _approximate _prefix
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*:match:*' original only
+# General completions settings.
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' menu select=5
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zcache
+zstyle ':completion:*' accept-exact '*(N)'
+
+# Cd settings.
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+# Kill settings.
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:*:kill:*:jobs' verbose false
