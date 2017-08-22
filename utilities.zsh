@@ -11,8 +11,8 @@ bindkey '^[3;5~' delete-char      # DELETE - delete character after cursor
 bindkey '^[[H' beginning-of-line  # HOME - go to beginning of line
 bindkey '^[[F' end-of-line        # END - go to end of line
 bindkey '^[[3;5~' kill-word       # CTRL+DELETE - delete whole next word
-bindkey '^[[A' history-beginning-search-backward    # History search.
-bindkey '^[[B' history-beginning-search-forward     # History search.
+bindkey '^[[1;5A' history-beginning-search-backward    # History search.
+bindkey '^[[1;5B' history-beginning-search-forward     # History search.
 
 if [[ "$(uname -o)" != "Cygwin" ]]; then
   bindkey '^H' backward-kill-word   # CTRL+BACKSPACE - delete whole previous word
@@ -24,7 +24,7 @@ fi
 #####################################################
 
 # Disable duplicate history entries.
-setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_DUPS HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS
 
 # No beeping.
 setopt NO_BEEP
@@ -71,6 +71,7 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' completer _complete _approximate
 
 # Approximate settings.
