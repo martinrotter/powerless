@@ -22,6 +22,19 @@ This is simple prompt which shows:
 * current Git branch (**if any**) and indication of dirty state,
 * some specific situations are shown with special color (like error in previous command or root prompt).
 
+## `utilities` script
+There is additional `utilities.zsh` script which offers some extra goodies:
+
+* custom keyboard bindings:
+    * `Ctrl+Left/Right` - move cursor one word left/right,
+    * `Home/End` - go to beginning/end of line,
+    * `Ctrl+Backspace/Delete` - delete whole word left/right from cursor,
+    * `Ctrl+Up/Down` - complete command line with previous/next matching item from history.
+* ignore duplicates in history,
+* allow folders to be browser without `cd`,
+* persistent directory stack,
+* simple & quite fast setup for completions.    
+    
 ## Installation.
 1. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
 2. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
