@@ -11,13 +11,18 @@ bindkey '^[3;5~' delete-char      # DELETE - delete character after cursor
 bindkey '^[[H' beginning-of-line  # HOME - go to beginning of line
 bindkey '^[[F' end-of-line        # END - go to end of line
 bindkey '^[[3;5~' kill-word       # CTRL+DELETE - delete whole next word
-bindkey '^[[1;5A' history-beginning-search-backward    # History search.
-bindkey '^[[1;5B' history-beginning-search-forward     # History search.
+bindkey '^[[1;5A' history-beginning-search-backward    # History search
+bindkey '^[[1;5B' history-beginning-search-forward     # History search
+
+case $(uname -s) in
+  *CYGWIN*) bindkey '^_' backward-kill-word ;;  # CTRL+BACKSPACE - delete whole previous word.
+  *) bindkey '^H' backward-kill-word ;;         # CTRL+BACKSPACE - delete whole previous word.
+esac
 
 if [[ "$(uname -o)" != "Cygwin" ]]; then
-  bindkey '^H' backward-kill-word   # CTRL+BACKSPACE - delete whole previous word
+  
 else
-  bindkey '^_' backward-kill-word   # CTRL+BACKSPACE - delete whole previous word
+  
 fi
 
 ### Options.
