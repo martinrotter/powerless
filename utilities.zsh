@@ -19,12 +19,6 @@ case $(uname -s) in
   *) bindkey '^H' backward-kill-word ;;         # CTRL+BACKSPACE - delete whole previous word.
 esac
 
-if [[ "$(uname -o)" != "Cygwin" ]]; then
-  
-else
-  
-fi
-
 ### Options.
 #####################################################
 
