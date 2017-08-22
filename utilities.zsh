@@ -68,8 +68,13 @@ compinit
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' menu select=5
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zcache
 zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' accept-exact-dirs true
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' completer _complete _approximate
+
+# Approximate settings.
+zstyle ':completion:*:approximate:*' max-errors 2 numeric
 
 # Cd settings.
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
