@@ -13,7 +13,7 @@ This is pure ZSH script and should work on any platform supported by ZSH. You do
 
 **You do not need anything else, like powerline-enabled font. This prompt does NOT use special "powerline" characters, nor special UTF-8 characters. It relies on ASCII characters where possible.**
 
-## What it shows?
+## What does the prompt show?
 This is simple prompt which shows:
 
 * current username (and hostname **if connected via SSH**),
@@ -35,7 +35,7 @@ There is additional `utilities.zsh` script which offers some extra goodies:
 * persistent directory stack,
 * simple & quite fast setup for completions.    
     
-## Installation.
+## Installation
 1. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
 2. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
 3. **!optional!** In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
