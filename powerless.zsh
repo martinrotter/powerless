@@ -64,7 +64,7 @@ precmd-powerless() {
 }
 
 # Attach the hook functions.
-precmd_functions+=(precmd-powerless)
+[[ ${precmd_functions[(r)precmd-powerless]} != "precmd-powerless" ]] && precmd_functions+=(precmd-powerless)
 
 # Set the prompts.
 PROMPT='$(powerless-prompt)'

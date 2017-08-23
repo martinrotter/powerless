@@ -31,7 +31,8 @@ There is additional `utilities.zsh` script which offers some extra goodies:
     * `Ctrl+Backspace/Delete` - delete whole word left/right from cursor,
     * `Ctrl+Up/Down` - complete command line with previous/next matching item from history.
 * ignore duplicates in history,
-* allow folders to be browser without `cd`,
+* allow folders to be browsed without `cd`,
+* new command `s`, which swaps two most recent directories on top of dirstack,
 * persistent directory stack,
 * simple & quite fast setup for completions.    
     
