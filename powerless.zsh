@@ -7,11 +7,11 @@ setopt PROMPT_SUBST
 setopt PROMPT_SP
 
 # Specify colors.
-powerless_color_text="0"
-powerless_color_user_host="84"
-powerless_color_code_wrong="196"
-powerless_color_pwd="75"
-powerless_color_git="202"
+color_text="black"
+color_user_host="green"
+color_code_wrong="red"
+color_pwd="blue"
+color_git="yellow"
 
 # Specify common variables.
 prompt_char='$'
@@ -42,14 +42,14 @@ get-last-code() {
 }
 
 get-prompt() {
-  echo -n "\n" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$powerless_color_code_wrong}%} $prompt_char$rc%{\e[0m%} " || echo -n " $prompt_char%{\e[0m%} " )
+  echo -n "\n" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$color_code_wrong}%} $prompt_char$rc%{\e[0m%} " || echo -n " $prompt_char%{\e[0m%} " )
 }
 
 powerless-prompt() {
-  get-user-host $powerless_color_text $powerless_color_user_host
-  get-last-code $powerless_color_text $powerless_color_code_wrong
-  get-pwd $powerless_color_text $powerless_color_pwd
-  get-git-info $powerless_color_text $powerless_color_git
+  get-user-host $color_text $color_user_host
+  get-last-code $color_text $color_code_wrong
+  get-pwd $color_text $color_pwd
+  get-git-info $color_text $color_git
   get-prompt
 }
 
