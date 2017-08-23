@@ -38,7 +38,7 @@ get-git-info() {
 }
 
 get-last-code() {
-  [[ (-v "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{$1}%K{$2}%} ✘ $last_code $rc"
+  [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{$1}%K{$2}%} ✘ $last_code $rc"
 }
 
 get-prompt() {
