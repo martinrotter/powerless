@@ -11,7 +11,7 @@ This is pure ZSH script and should work on any platform supported by ZSH. You do
 * ZSH,
 * terminal emulator.
 
-**You do not need anything else, like powerline-enabled font. This prompt does NOT use special "powerline" characters, nor special UTF-8 characters. It relies on ASCII characters where possible.**
+**You do not need anything else, like powerline-enabled font. This prompt does NOT use special "powerline" characters, nor special UTF-8 characters. It relies on ASCII characters where possible. The prompt uses standard 8/16 colors, so that your terminal emulator color themes will work.**
 
 ## What does the prompt show?
 This is simple prompt which shows:
