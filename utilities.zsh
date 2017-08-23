@@ -56,7 +56,7 @@ chpwd() {
   print -l $PWD ${(u)dirstack} > $DIRSTACKFILE
 }
 
-alias s='cd -1'   # Performs swap of two mest recent entries in dirstack.
+alias s='cd -1 > /dev/null'   # Performs swap of two mest recent entries in dirstack.
 
 ### Completions.
 #####################################################
