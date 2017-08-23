@@ -40,7 +40,8 @@ There is additional `utilities.zsh` script which offers some extra goodies:
 1. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
 2. Add this to your `.zshrc`:
 ```bash
-powerless_keep_colors=false               # "true" if you wish to keep custom colors, "false" if you want 8/16 colors and use you color theme.
+# Set this to true if you wish to keep custom colors, or false if you want 8/16 colors and use you color theme.
+powerless_keep_colors=false
 
 source /path/to/powerless/powerless.zsh  # Script with prompt.
 source /path/to/powerless/utilities.zsh  # Optional scripts (see above).
