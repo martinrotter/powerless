@@ -5,7 +5,6 @@
 # Set options and settings.
 setopt PROMPT_SUBST
 setopt PROMPT_SP
-ZLE_RPROMPT_INDENT=0
 
 # Specify colors.
 powerless_color_text="0"
