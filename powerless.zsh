@@ -7,11 +7,19 @@ setopt PROMPT_SUBST
 setopt PROMPT_SP
 
 # Specify colors.
-color_text="black"
-color_user_host="green"
-color_code_wrong="red"
-color_pwd="blue"
-color_git="yellow"
+if [[ $powerless_keep_colors == true ]]; then
+  color_text="0"
+  color_user_host="84"
+  color_code_wrong="196"
+  color_pwd="75"
+  color_git="202"
+else
+  color_text="black"
+  color_user_host="green"
+  color_code_wrong="red"
+  color_pwd="blue"
+  color_git="yellow"
+fi
 
 # Specify common variables.
 prompt_char='$'

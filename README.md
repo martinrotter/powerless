@@ -38,5 +38,10 @@ There is additional `utilities.zsh` script which offers some extra goodies:
     
 ## Installation
 1. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
-2. Source main powerless script in your `.zshrc`: `source "/path/to/powerless/powerless.zsh"`.
-3. **!optional!** In your `.zshrc`, source script `/path/to/powerless/utilities.zsh`. That will enable some advanced ZSH goodies like completion, aliases etc.
+2. Add this to your `.zshrc`:
+```bash
+powerless_keep_colors=false               # "true" if you wish to keep custom colors, "false" if you want 8/16 colors and use you color theme.
+
+source /path/to/powerless/powerless.zsh  # Script with prompt.
+source /path/to/powerless/utilities.zsh  # Optional scripts (see above).
+```
