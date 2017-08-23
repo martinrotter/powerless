@@ -1,5 +1,5 @@
 # powerless
-Tiny &amp; simple pure ZSH prompt inspired by powerline.
+Tiny &amp; minimalistic/responsive ZSH prompt inspired by powerline.
 
 ![alt text](https://raw.githubusercontent.com/martinrotter/powerless/master/screenshots/powerless.gif)
 
