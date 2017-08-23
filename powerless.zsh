@@ -18,7 +18,7 @@ prompt_char='$'
 rc='%{%f%k%}'
 
 get-user-host() {  
-  echo -n "%{%F{$1}%K{$2}%} %n$([[ -n "$SSH_CLIENT" ]] && echo -n '@%M') $rc"
+  [[ -n "$SSH_CLIENT" ]] && echo -n "%{%F{$1}%K{$2}%} %n@%M $rc"
 }
 
 get-pwd() {
