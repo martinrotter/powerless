@@ -9,16 +9,18 @@ setopt PROMPT_SP
 # Specify colors.
 if [[ $powerless_keep_colors == true ]]; then
   color_text="0"
-  color_user_host="84"
+  color_user_host="79"
   color_code_wrong="196"
   color_pwd="75"
-  color_git="202"
+  color_git_ok="79"
+  color_git_dirty="203"
 else
   color_text="black"
   color_user_host="green"
   color_code_wrong="red"
   color_pwd="blue"
-  color_git="yellow"
+  color_git_ok="green"
+  color_git_dirty="red"
 fi
 
 # Specify common variables.
@@ -36,12 +38,17 @@ get-pwd() {
 get-git-info() { 
   local git_branch=$(git symbolic-ref --short HEAD 2> /dev/null)
    
-  if [[ -n "$git_branch" ]]; then  
+  if [[ -n "$git_branch" ]]; then
     git diff --quiet --ignore-submodules --exit-code HEAD > /dev/null 2>&1
     
-    [[ "$?" != "0" ]] && git_symbols="❗ "
+    if [[ "$?" != "0" ]]; then
+      git_symbols="❗ "
+      back_color=$3
+    else
+      back_color=$2
+    fi
   
-    echo -n "%{%F{$1}%K{$2}%} $git_branch $git_symbols$rc"
+    echo -n "%{%F{$1}%K{$back_color}%} $git_branch $git_symbols$rc"
   fi
 }
 
@@ -57,7 +64,7 @@ powerless-prompt() {
   get-user-host $color_text $color_user_host
   get-last-code $color_text $color_code_wrong
   get-pwd $color_text $color_pwd
-  get-git-info $color_text $color_git
+  get-git-info $color_text $color_git_ok $color_git_dirty
   get-prompt
 }
 
