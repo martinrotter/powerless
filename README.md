@@ -44,5 +44,5 @@ There is additional `utilities.zsh` script which offers some extra goodies:
 # NOTE THAT these two scripts must be called with parameters.
 
 source /path/to/powerless/powerless.zsh false # Script with prompt, disable hardcoded colors.
-source /path/to/powerless/utilities.zsh  # Optional scripts (see above), enable dirstack tweaks.
+source /path/to/powerless/utilities.zsh true  # Optional scripts (see above), enable dirstack tweaks.
 ```
