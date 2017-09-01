@@ -1,5 +1,7 @@
 ################################################
 ### This is the ZSH powerless main script.
+###
+### How to call: source powerless.zsh <ENABLE_CUSTOM_COLORS>
 ################################################
 
 # Set options and settings.
@@ -7,7 +9,7 @@ setopt PROMPT_SUBST
 setopt PROMPT_SP
 
 # Specify colors.
-if [[ $powerless_keep_colors == true ]]; then
+if [[ $1 == true ]]; then
   color_text="0"
   color_user_host="79"
   color_code_wrong="196"

@@ -19,6 +19,7 @@ This is simple prompt which shows:
 * current username (and hostname **if connected via SSH**),
 * working directory,
 * result code of previous command (**if differs from 0**),
+* support for 8/16 colors or hardcoded custom colors (**switchable via script parameter**),
 * current Git branch (**if any**) and indication of dirty state,
 * some specific situations are shown with special color (like error in previous command or root prompt).
 
@@ -33,16 +34,15 @@ There is additional `utilities.zsh` script which offers some extra goodies:
 * ignore duplicates in history,
 * allow folders to be browsed without `cd`,
 * new command `s`, which swaps two most recent directories on top of dirstack,
-* persistent directory stack,
+* persistent directory stack tweaks (**switchable via script parameter**),
 * simple & quite fast setup for completions.    
     
 ## Installation
 1. Clone this repo into standalone folder: `git clone https://github.com/martinrotter/powerless.git powerless`.
 2. Add this to your `.zshrc`:
 ```bash
-# Set this to true if you wish to keep custom colors, or false if you want 8/16 colors and use your color theme.
-powerless_keep_colors=false
+# NOTE THAT these two scripts must be called with parameters.
 
-source /path/to/powerless/powerless.zsh  # Script with prompt.
-source /path/to/powerless/utilities.zsh  # Optional scripts (see above).
+source /path/to/powerless/powerless.zsh false # Script with prompt, disable hardcoded colors.
+source /path/to/powerless/utilities.zsh  # Optional scripts (see above), enable dirstack tweaks.
 ```

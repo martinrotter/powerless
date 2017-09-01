@@ -1,5 +1,7 @@
 #####################################################
 ### This is the OPTIONAL ZSH powerless utlity script.
+###
+### How to call: source utilities.zsh <ENABLE_DIRSTACK_TWEAKS>
 #####################################################
 
 ### Shortcuts.
@@ -34,29 +36,31 @@ setopt AUTO_CD
 # Complete aliases.
 setopt COMPLETE_ALIASES
 
-# Setup directory stack.
-setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_MINUS
-
 # Do not remove slash when executed completed expression.
 unsetopt AUTO_REMOVE_SLASH
 
 ### Dirstack and history.
 #####################################################
 
-# Setup persistent directory stack.
-DIRSTACKFILE="$HOME/.zdirstack"
-DIRSTACKSIZE=30
+if [[ $1 == true ]]; then
+  # Setup directory stack.
+  setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_MINUS
 
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )  
-  [[ -d $dirstack[1] ]] && popd
+  # Setup persistent directory stack.
+  DIRSTACKFILE="$HOME/.zdirstack"
+  DIRSTACKSIZE=30
+
+  if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )  
+    [[ -d $dirstack[1] ]] && popd
+  fi
+
+  chpwd() {
+    print -l $PWD ${(u)dirstack} > $DIRSTACKFILE
+  }
+
+  alias s='cd -1 > /dev/null 2>&1'   # Performs swap of two mest recent entries in dirstack.
 fi
-
-chpwd() {
-  print -l $PWD ${(u)dirstack} > $DIRSTACKFILE
-}
-
-alias s='cd -1 > /dev/null 2>&1'   # Performs swap of two mest recent entries in dirstack.
 
 ### Completions.
 #####################################################
