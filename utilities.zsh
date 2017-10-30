@@ -6,8 +6,8 @@
 
 ### Shortcuts.
 #####################################################
-bindkey ';5D' backward-word       # CTRL+LEFT - jump to previous word boundary
-bindkey ';5C' forward-word        # CTRL+RIGHT - jump to next word boundary
+bindkey '^[[1;5D' backward-word       # CTRL+LEFT - jump to previous word boundary
+bindkey '^[[1;5C' forward-word        # CTRL+RIGHT - jump to next word boundary
 bindkey '^[[3~' delete-char       # BACKSPACE - delete character before cursor
 bindkey '^[3;5~' delete-char      # DELETE - delete character after cursor
 bindkey '^[[H' beginning-of-line  # HOME - go to beginning of line
