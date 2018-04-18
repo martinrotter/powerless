@@ -16,6 +16,7 @@ if [[ $1 == true ]]; then
   color_pwd="75"
   color_git_ok="79"
   color_git_dirty="203"
+  color_venv="33"
 else
   color_text="black"
   color_user_host="green"
@@ -23,6 +24,7 @@ else
   color_pwd="blue"
   color_git_ok="green"
   color_git_dirty="red"
+  color_venv="yellow"
 fi
 
 # Specify common variables.
@@ -58,6 +60,12 @@ get-last-code() {
   [[ (-n "$last_code") && ($last_code -ne 0) ]] && echo -n "%{%F{$1}%K{$2}%} ✘ $last_code $rc"
 }
 
+get-venv-info() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        echo -n "%{%F{$1}%K{$2}%} $(basename $VIRTUAL_ENV) $rc"
+    fi
+}
+
 get-prompt() {
   echo -n "\n" && ([[ "$(print -P "%#")" == "#" ]] && echo -n "%{%F{$color_code_wrong}%} $prompt_char$rc%{\e[0m%} " || echo -n " $prompt_char%{\e[0m%} " )
 }
@@ -67,6 +75,7 @@ powerless-prompt() {
   get-last-code $color_text $color_code_wrong
   get-pwd $color_text $color_pwd
   get-git-info $color_text $color_git_ok $color_git_dirty
+  get-venv-info $color_text $color_venv
   get-prompt
 }
 
